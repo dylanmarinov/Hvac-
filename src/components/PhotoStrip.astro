@@ -1,0 +1,58 @@
+<!-- HVAC photo strip — visual proof of real work -->
+<div class="photo-strip">
+  <div class="strip-inner">
+    <div class="strip-img" data-reveal style="transition-delay:0s">
+      <img src="https://images.pexels.com/photos/6471912/pexels-photo-6471912.jpeg?auto=compress&cs=tinysrgb&w=700" alt="HVAC technician checking refrigerant gauges" />
+      <div class="strip-label">Refrigerant Service</div>
+    </div>
+    <div class="strip-img" data-reveal style="transition-delay:0.12s">
+      <img src="https://images.pexels.com/photos/32588555/pexels-photo-32588555.jpeg?auto=compress&cs=tinysrgb&w=700" alt="HVAC technician servicing indoor unit" />
+      <div class="strip-label">Indoor Unit Service</div>
+    </div>
+    <div class="strip-img" data-reveal style="transition-delay:0.24s">
+      <img src="https://images.pexels.com/photos/5463580/pexels-photo-5463580.jpeg?auto=compress&cs=tinysrgb&w=700" alt="AC repair and maintenance" />
+      <div class="strip-label">AC Repair & Maintenance</div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .photo-strip {
+    background: var(--bg-alt);
+    padding: 0 0 0 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .strip-inner {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 0;
+  }
+  .strip-img {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16/10;
+  }
+  .strip-img img {
+    width:100%; height:100%;
+    object-fit:cover; object-position:center;
+    transition:transform .7s var(--ease);
+    display:block;
+  }
+  .strip-img:hover img { transform:scale(1.05); }
+  .strip-img:not(:last-child) { border-right:2px solid var(--bg); }
+
+  .strip-label {
+    position:absolute; bottom:0; left:0; right:0;
+    padding:32px 24px 20px;
+    background:linear-gradient(to top, rgba(8,14,31,.72) 0%, transparent 100%);
+    font-family:var(--font-head); font-size:.78rem; font-weight:700;
+    letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.9);
+  }
+
+  @media (max-width:700px) {
+    .strip-inner { grid-template-columns:1fr; }
+    .strip-img:not(:last-child) { border-right:none; border-bottom:2px solid var(--bg); }
+  }
+</style>

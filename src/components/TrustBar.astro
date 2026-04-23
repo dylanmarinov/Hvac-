@@ -1,0 +1,51 @@
+---
+const badges = [
+  { label: 'NATE Certified',            icon: '✓' },
+  { label: 'Carrier Authorized Dealer', icon: '✓' },
+  { label: 'BBB A+ Rated',              icon: '✓' },
+  { label: 'Energy Star Partner',       icon: '✓' },
+  { label: 'NATE Certified',            icon: '✓' },
+  { label: 'Carrier Authorized Dealer', icon: '✓' },
+  { label: 'BBB A+ Rated',              icon: '✓' },
+  { label: 'Energy Star Partner',       icon: '✓' },
+];
+---
+<div class="trust-bar">
+  <div class="track-wrap">
+    <div class="track">
+      {badges.map(b => (
+        <span class="tb">
+          <span class="tb-check">{b.icon}</span>
+          {b.label}
+        </span>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .trust-bar {
+    background:var(--navy); padding:14px 0; overflow:hidden;
+  }
+  .track-wrap {
+    overflow:hidden;
+    mask-image:linear-gradient(to right,transparent,black 10%,black 90%,transparent);
+    -webkit-mask-image:linear-gradient(to right,transparent,black 10%,black 90%,transparent);
+  }
+  .track {
+    display:flex; gap:48px; width:max-content;
+    animation:marquee 25s linear infinite;
+  }
+  .tb {
+    display:flex; align-items:center; gap:8px;
+    font-size:.74rem; font-weight:600; letter-spacing:.1em;
+    text-transform:uppercase; color:rgba(255,255,255,.75); white-space:nowrap;
+  }
+  .tb-check {
+    width:18px;height:18px;border-radius:50%;
+    background:var(--orange);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:.6rem;font-weight:700;flex-shrink:0;
+  }
+  @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+</style>

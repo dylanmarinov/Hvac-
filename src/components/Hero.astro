@@ -1,0 +1,218 @@
+<section id="hero">
+  <div class="hero-bg">
+    <img src="https://images.pexels.com/photos/6471911/pexels-photo-6471911.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="" aria-hidden="true" id="heroImg" class="hero-img" />
+    <div class="hero-overlay"></div>
+
+    <!-- Animated floating orbs -->
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+
+    <!-- Dot grid texture -->
+    <div class="hero-dots"></div>
+  </div>
+
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-tag" id="heroTag">
+        <span class="htag-dot"></span>
+        Serving Tampa Bay Since 2009
+      </div>
+
+      <h1 class="hero-title">
+        <span class="word-wrap" id="hw1" style="transition-delay:0s"><span>Tampa Bay's</span></span>
+        <span class="word-wrap" id="hw2" style="transition-delay:.1s"><span>Most Trusted</span></span>
+        <span class="word-wrap" id="hw3" style="transition-delay:.2s"><span class="accent-word">HVAC Experts.</span></span>
+      </h1>
+
+      <p class="hero-sub" id="heroSub">
+        Fast, honest, and reliable HVAC service for homeowners and businesses
+        across the Tampa Bay Area. Available 24/7 — including holidays.
+      </p>
+
+      <div class="hero-btns" id="heroBtns">
+        <a href="#contact" class="btn btn-orange hero-btn-lg">Get a Free Estimate</a>
+        <a href="tel:+17275550100" class="btn btn-outline-white hero-btn-lg">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.02 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14v2.92z"/></svg>
+          Call (727) 555-0100
+        </a>
+      </div>
+
+      <div class="hero-badges" id="heroBadges">
+        <div class="hbadge"><span class="hb-num">4.9★</span><span>Google Rating</span></div>
+        <div class="hb-sep"></div>
+        <div class="hbadge"><span class="hb-num">2,400+</span><span>Systems Installed</span></div>
+        <div class="hb-sep"></div>
+        <div class="hbadge"><span class="hb-num">24/7</span><span>Emergency Service</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="hero-scroll" id="heroScroll">
+    <div class="hs-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<style>
+  #hero {
+    position: relative; min-height: 84vh;
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg { position: absolute; inset: 0; }
+  .hero-img { width: 100%; height: 100%; object-fit: cover; object-position: center 25%; will-change: transform; }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(105deg, rgba(10,22,55,.95) 42%, rgba(10,22,55,.55) 100%),
+                linear-gradient(to top, rgba(10,22,55,.6) 0%, transparent 45%);
+  }
+
+  /* Animated orbs */
+  .orb {
+    position: absolute; border-radius: 50%;
+    filter: blur(90px); pointer-events: none;
+  }
+  .orb1 {
+    width: 520px; height: 520px;
+    background: radial-gradient(circle, rgba(232,82,26,.45) 0%, transparent 70%);
+    top: -140px; right: 5%;
+    animation: orbDrift 10s ease-in-out infinite;
+  }
+  .orb2 {
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, rgba(27,61,123,.6) 0%, transparent 70%);
+    bottom: -60px; right: 28%;
+    animation: orbDrift 14s ease-in-out infinite reverse;
+    animation-delay: -4s;
+  }
+  .orb3 {
+    width: 260px; height: 260px;
+    background: radial-gradient(circle, rgba(253,160,122,.35) 0%, transparent 70%);
+    top: 35%; right: 12%;
+    animation: orbDrift 8s ease-in-out infinite;
+    animation-delay: -6s;
+  }
+  @keyframes orbDrift {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    30%       { transform: translate(40px, -30px) scale(1.06); }
+    60%       { transform: translate(-25px, 45px) scale(0.94); }
+    80%       { transform: translate(20px, 20px) scale(1.02); }
+  }
+
+  /* Dot texture overlay */
+  .hero-dots {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image: radial-gradient(circle, rgba(255,255,255,.07) 1px, transparent 1px);
+    background-size: 36px 36px;
+    mask-image: linear-gradient(to right, transparent 0%, black 30%, black 70%, transparent 100%),
+                linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+    -webkit-mask-composite: intersect;
+    mask-composite: intersect;
+  }
+
+  .container { position: relative; z-index: 2; }
+  .hero-content { max-width: 660px; padding: 56px 0 48px; }
+
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(232,82,26,.15); border: 1px solid rgba(232,82,26,.35);
+    color: #fda07a; border-radius: 100px;
+    padding: 7px 16px; font-size: .74rem; font-weight: 600; letter-spacing: .06em;
+    margin-bottom: 28px;
+    opacity: 0; transform: translateY(12px);
+    transition: opacity .6s var(--ease), transform .6s var(--ease);
+  }
+  .hero-tag.show { opacity: 1; transform: translateY(0); }
+  .htag-dot { width: 6px; height: 6px; border-radius: 50%; background: #f97316; animation: hpulse 2s infinite; }
+  @keyframes hpulse { 0%,100%{opacity:1}50%{opacity:.4} }
+
+  .hero-title {
+    font-size: clamp(2.8rem, 5.5vw, 5.2rem);
+    font-weight: 900; line-height: 1.06; letter-spacing: -.03em;
+    color: #fff; margin-bottom: 28px;
+  }
+  .accent-word {
+    background: linear-gradient(90deg, #fda07a 0%, #e8521a 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 1.08rem; color: rgba(255,255,255,.72);
+    line-height: 1.75; margin-bottom: 40px; max-width: 500px;
+    opacity: 0; transform: translateY(16px);
+    transition: opacity .7s var(--ease) .45s, transform .7s var(--ease) .45s;
+  }
+  .hero-sub.show { opacity: 1; transform: translateY(0); }
+
+  .hero-btns {
+    display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 44px;
+    opacity: 0; transform: translateY(16px);
+    transition: opacity .7s var(--ease) .65s, transform .7s var(--ease) .65s;
+  }
+  .hero-btns.show { opacity: 1; transform: translateY(0); }
+  .hero-btn-lg { padding: 16px 32px; font-size: .96rem; }
+
+  .hero-badges {
+    display: flex; align-items: center; gap: 0;
+    background: rgba(255,255,255,.07); backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,.13);
+    border-radius: 14px; padding: 18px 28px;
+    width: fit-content;
+    opacity: 0; transform: translateY(14px);
+    transition: opacity .7s var(--ease) .85s, transform .7s var(--ease) .85s;
+  }
+  .hero-badges.show { opacity: 1; transform: translateY(0); }
+  .hbadge { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 0 28px; }
+  .hbadge:first-child { padding-left: 0; }
+  .hbadge:last-child  { padding-right: 0; }
+  .hb-num { font-family: var(--font-head); font-size: 1.4rem; font-weight: 900; color: #fff; line-height: 1; }
+  .hbadge span:last-child { font-size: .71rem; color: rgba(255,255,255,.5); letter-spacing: .05em; white-space: nowrap; }
+  .hb-sep { width: 1px; height: 38px; background: rgba(255,255,255,.12); flex-shrink: 0; }
+
+  /* Scroll indicator */
+  .hero-scroll {
+    position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: rgba(255,255,255,.35); font-size: .68rem; letter-spacing: .14em;
+    text-transform: uppercase; z-index: 2;
+    animation: scrollFade 2.5s ease-in-out 2s both;
+  }
+  .hs-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,.4), transparent);
+    animation: scrollLine 1.6s ease-in-out infinite;
+  }
+  @keyframes scrollLine { 0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom} }
+  @keyframes scrollFade { from{opacity:0;transform:translateX(-50%) translateY(10px)} to{opacity:1;transform:translateX(-50%) translateY(0)} }
+
+  @media (max-width: 640px) {
+    #hero { min-height: 88vh; }
+    .hero-content { padding: 48px 0 40px; }
+    .hero-title { font-size: 2.5rem; }
+    .hero-badges { padding: 14px 18px; }
+    .hbadge { padding: 0 16px; }
+    .hero-scroll { display: none; }
+    .orb1 { width: 300px; height: 300px; }
+    .orb2 { width: 220px; height: 220px; }
+  }
+</style>
+
+<script>
+  const img=document.getElementById('heroImg');
+  window.addEventListener('scroll',()=>{if(img)img.style.transform=`translateY(${window.scrollY*.28}px)`;},{passive:true});
+  setTimeout(()=>document.getElementById('heroTag')?.classList.add('show'),200);
+  setTimeout(()=>{
+    document.querySelectorAll('#hw1,#hw2,#hw3').forEach(el=>el.classList.add('visible'));
+  },350);
+  setTimeout(()=>document.getElementById('heroSub')?.classList.add('show'),550);
+  setTimeout(()=>document.getElementById('heroBtns')?.classList.add('show'),720);
+  setTimeout(()=>document.getElementById('heroBadges')?.classList.add('show'),900);
+  // Hide scroll indicator on scroll
+  window.addEventListener('scroll',()=>{
+    const s=document.getElementById('heroScroll');
+    if(s)s.style.opacity=window.scrollY>80?'0':'';
+  },{passive:true});
+</script>

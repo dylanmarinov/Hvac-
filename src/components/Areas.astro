@@ -1,0 +1,67 @@
+---
+const areas = [
+  'Tampa','Clearwater','St. Petersburg','Largo','Pinellas Park',
+  'Dunedin','Safety Harbor','Brandon','Wesley Chapel','Port Richey',
+  'New Port Richey','Palm Harbor','Tarpon Springs','Oldsmar',
+];
+---
+
+<section id="areas">
+  <div class="container">
+    <div class="a-layout">
+      <div class="a-left" data-reveal-left>
+        <p class="section-tag">Where We Serve</p>
+        <h2 class="section-title">Covering all of<br/>Tampa Bay.</h2>
+        <p class="section-sub">
+          From downtown Tampa to the Gulf Coast beaches — if you're in the Tampa Bay
+          area, Apex Air is your local HVAC partner.
+        </p>
+        <a href="#contact" class="btn btn-navy" style="margin-top:28px">Check My Area</a>
+      </div>
+      <div class="a-right" data-reveal-right>
+        <div class="a-pills" data-stagger>
+          {areas.map(a => (
+            <div class="a-pill">
+              <span class="a-pip"></span>
+              {a}
+            </div>
+          ))}
+        </div>
+        <p class="a-note">
+          Don't see your city?&nbsp;
+          <a href="#contact">Contact us — we likely cover it.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #areas { background: var(--bg-alt); border-top: 1px solid var(--border); }
+
+  .a-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+
+  .a-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px; }
+  .a-pill {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--bg); border: 1.5px solid var(--border);
+    border-radius: 100px; padding: 9px 18px;
+    font-size: .82rem; font-weight: 500; color: var(--text);
+    transition: all .25s var(--ease-out); cursor: default;
+  }
+  .a-pill:hover { background: var(--navy); border-color: var(--navy); color: #fff; }
+  .a-pill:hover .a-pip { background: #fda07a; }
+  .a-pip {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--orange); flex-shrink: 0;
+    transition: background .25s;
+  }
+
+  .a-note { font-size: .82rem; color: var(--muted); padding-top: 20px; border-top: 1px solid var(--border); }
+  .a-note a { color: var(--navy); text-decoration: none; font-weight: 600; }
+  .a-note a:hover { text-decoration: underline; }
+
+  @media (max-width: 900px) {
+    .a-layout { grid-template-columns: 1fr; gap: 44px; }
+  }
+</style>

@@ -1,0 +1,135 @@
+<section id="contact">
+  <div class="cta-bg">
+    <img
+      src="https://images.pexels.com/photos/6471913/pexels-photo-6471913.jpeg?auto=compress&cs=tinysrgb&w=1600"
+      alt="" aria-hidden="true" class="cta-img"
+    />
+    <div class="cta-overlay"></div>
+  </div>
+
+  <div class="container">
+    <div class="cta-layout">
+      <div class="cta-left" data-reveal>
+        <p class="section-tag" style="--orange:rgba(253,160,122,.9)">Get Started</p>
+        <h2 class="cta-title">Ready to experience<br/>true comfort?</h2>
+        <p class="cta-sub">
+          Book a free in-home assessment and let our experts design the
+          perfect climate solution for your space — zero obligation.
+        </p>
+        <div class="cta-trust">
+          <div class="ti">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fda07a" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Free consultation, no pressure
+          </div>
+          <div class="ti">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fda07a" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            Same-day response guaranteed
+          </div>
+          <div class="ti">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fda07a" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            NATE-certified technicians only
+          </div>
+        </div>
+        <div class="cta-phone">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.02 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14v2.92z"/></svg>
+          <div>
+            <span class="cp-label">Call us anytime</span>
+            <a href="tel:+17275550100" class="cp-num">(727) 555-0100</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-form-wrap" data-reveal style="transition-delay:.18s">
+        <div class="cta-form">
+          <h3 class="form-title">Book a Free Assessment</h3>
+          <div class="form-row">
+            <input type="text" placeholder="Your name" class="fi" />
+            <input type="tel"  placeholder="Phone number" class="fi" />
+          </div>
+          <input type="email" placeholder="Email address" class="fi fw" />
+          <select class="fi fw sel">
+            <option value="" disabled selected>What do you need?</option>
+            <option>AC Installation</option>
+            <option>AC Repair</option>
+            <option>Heating System</option>
+            <option>Commercial HVAC</option>
+            <option>Indoor Air Quality</option>
+            <option>Emergency Service</option>
+            <option>Other / Not Sure</option>
+          </select>
+          <textarea class="fi fw ta" placeholder="Any additional details (optional)"></textarea>
+          <button class="btn btn-orange sub-btn">Request Free Assessment</button>
+          <p class="form-note">We'll reach out within one business hour.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #contact { position: relative; padding: 120px 0; overflow: hidden; }
+
+  .cta-bg { position: absolute; inset: 0; z-index: 0; }
+  .cta-img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+  .cta-overlay {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to right, rgba(10,22,55,.97) 50%, rgba(10,22,55,.82) 100%),
+      linear-gradient(to top, rgba(10,22,55,.6) 0%, transparent 55%);
+  }
+
+  .cta-layout {
+    position: relative; z-index: 2;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start;
+  }
+
+  .cta-title {
+    font-size: clamp(1.9rem,3vw,3rem);
+    font-weight: 800; line-height: 1.1; letter-spacing: -.025em;
+    color: #fff; margin: 12px 0 16px;
+  }
+  .cta-sub { font-size: .93rem; color: rgba(255,255,255,.6); line-height: 1.8; }
+
+  .cta-trust { margin-top: 28px; display: flex; flex-direction: column; gap: 12px; }
+  .ti { display: flex; align-items: center; gap: 10px; font-size: .86rem; color: rgba(255,255,255,.65); }
+
+  .cta-phone {
+    display: flex; align-items: center; gap: 14px;
+    margin-top: 32px; padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,.12);
+    color: #fda07a;
+  }
+  .cp-label { display: block; font-size: .72rem; color: rgba(255,255,255,.45); letter-spacing: .07em; text-transform: uppercase; }
+  .cp-num { font-family: var(--font-head); font-size: 1.35rem; font-weight: 800; color: #fff; text-decoration: none; display: block; transition: color .2s; }
+  .cp-num:hover { color: #fda07a; }
+
+  .cta-form-wrap { padding-top: 2px; }
+  .cta-form {
+    background: #fff; border-radius: var(--radius-lg); padding: 36px 32px;
+    display: flex; flex-direction: column; gap: 12px;
+    box-shadow: 0 24px 80px rgba(0,0,0,.28);
+  }
+  .form-title { font-family: var(--font-head); font-size: 1.1rem; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .fi {
+    background: var(--bg-alt); border: 1.5px solid var(--border); border-radius: 8px;
+    padding: 13px 16px; font-family: var(--font-body); font-size: .86rem;
+    color: var(--text); outline: none; width: 100%;
+    transition: border-color .25s, box-shadow .25s; -webkit-appearance: none;
+  }
+  .fi::placeholder { color: var(--light); }
+  .fi:focus { border-color: var(--navy); box-shadow: 0 0 0 3px rgba(27,61,123,.1); background: #fff; }
+  .fw { width: 100%; }
+  .sel { color: var(--muted); cursor: none; }
+  .sel option { background: #fff; color: var(--text); }
+  .ta { resize: vertical; min-height: 80px; }
+  .sub-btn { justify-content: center; padding: 15px 20px; font-size: .9rem; margin-top: 4px; }
+  .form-note { font-size: .74rem; color: var(--light); text-align: center; }
+
+  @media (max-width: 960px) {
+    .cta-layout { grid-template-columns: 1fr; gap: 48px; }
+    .form-row { grid-template-columns: 1fr; }
+    #contact { padding: 80px 0; }
+  }
+</style>

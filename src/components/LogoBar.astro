@@ -1,0 +1,52 @@
+---
+const badges = [
+  'NATE Certified', 'Carrier Authorized Dealer', 'Trane Comfort Specialist',
+  'Lennox Premier Dealer', 'Energy Star Partner', 'BBB A+ Rated',
+  'NATE Certified', 'Carrier Authorized Dealer', 'Trane Comfort Specialist',
+  'Lennox Premier Dealer', 'Energy Star Partner', 'BBB A+ Rated',
+];
+---
+
+<div class="logobar">
+  <div class="track-wrap">
+    <div class="track">
+      {badges.map(b => (
+        <span class="badge">
+          <span class="badge-star">✦</span> {b}
+        </span>
+      ))}
+    </div>
+  </div>
+</div>
+
+<style>
+  .logobar {
+    background: var(--bg-2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 17px 0;
+    overflow: hidden;
+  }
+  .track-wrap {
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  }
+  .track {
+    display: flex;
+    gap: 52px;
+    width: max-content;
+    animation: marquee 28s linear infinite;
+  }
+  .badge {
+    display: flex; align-items: center; gap: 10px;
+    font-size: .74rem; font-weight:500;
+    letter-spacing:.12em; text-transform:uppercase;
+    color: var(--muted); white-space:nowrap;
+  }
+  .badge-star { color:var(--blue); font-size:.55rem; }
+  @keyframes marquee {
+    from { transform:translateX(0); }
+    to   { transform:translateX(-50%); }
+  }
+</style>

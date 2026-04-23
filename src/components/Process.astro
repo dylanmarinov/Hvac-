@@ -1,0 +1,85 @@
+---
+const steps = [
+  { num:'01', title:'Book Your Visit',       desc:'Schedule online or call our team. We confirm your appointment within the hour — no waiting, no runaround.' },
+  { num:'02', title:'Expert Assessment',     desc:'A NATE-certified technician evaluates your system and walks you through every option — clearly and honestly.' },
+  { num:'03', title:'Precision Installation',desc:'Our crew arrives on time, works clean, and completes the job efficiently with zero shortcuts taken.' },
+  { num:'04', title:'Enjoy True Comfort',    desc:'Your system is tested, certified, and backed by our lifetime workmanship warranty. Sit back and breathe easy.' },
+];
+---
+
+<section id="process">
+  <div class="container">
+    <div class="p-layout">
+      <div class="p-left">
+        <div data-reveal-left>
+          <p class="label">How It Works</p>
+          <h2 class="section-title">Our process,<br />perfected.</h2>
+          <p class="p-intro">
+            Every Apex Air project follows the same four-step process — designed to deliver
+            a flawless result and a stress-free experience, every single time.
+          </p>
+        </div>
+        <a href="#contact" class="btn btn-primary p-cta" data-reveal-left style="transition-delay:.2s">
+          Start the Process →
+        </a>
+      </div>
+
+      <div class="p-steps" data-stagger>
+        {steps.map((s,i) => (
+          <div class="step">
+            <div class="step-track">
+              <div class="step-dot"></div>
+              {i < steps.length-1 && <div class="step-line"></div>}
+            </div>
+            <div class="step-body">
+              <span class="step-num">{s.num}</span>
+              <h3 class="step-title">{s.title}</h3>
+              <p class="step-desc">{s.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #process {
+    background:var(--bg-alt);
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+  }
+
+  .p-layout { display:grid; grid-template-columns:1fr 1fr; gap:96px; align-items:start; }
+
+  .p-intro { font-size:.93rem; color:var(--muted); line-height:1.8; max-width:360px; margin-top:16px; }
+  .p-cta { margin-top:36px; display:inline-flex !important; }
+
+  .p-steps { display:flex; flex-direction:column; padding-top:8px; }
+  .step { display:flex; gap:24px; }
+
+  .step-track { display:flex; flex-direction:column; align-items:center; flex-shrink:0; padding-top:3px; }
+  .step-dot {
+    width:12px; height:12px; border-radius:50%;
+    border:2px solid var(--blue); background:var(--bg-alt);
+    flex-shrink:0; z-index:1; transition:background .3s;
+  }
+  .step:hover .step-dot { background:var(--blue); }
+  .step-line {
+    width:1px; flex:1; min-height:52px;
+    background:linear-gradient(to bottom, var(--blue-border), rgba(8,14,31,.06));
+    margin:7px 0;
+  }
+
+  .step-body { padding-bottom:40px; flex:1; }
+  .step:last-child .step-body { padding-bottom:0; }
+
+  .step-num {
+    display:block; font-family:var(--font-head); font-size:.68rem;
+    font-weight:700; letter-spacing:.14em; color:var(--blue); margin-bottom:8px;
+  }
+  .step-title { font-size:1.08rem; font-weight:700; color:var(--heading); margin-bottom:7px; }
+  .step-desc { font-size:.86rem; color:var(--muted); line-height:1.75; }
+
+  @media (max-width:900px) { .p-layout { grid-template-columns:1fr; gap:52px; } }
+</style>

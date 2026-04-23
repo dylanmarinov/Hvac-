@@ -1,0 +1,133 @@
+---
+const reviews = [
+  {
+    name: 'Michael T.',
+    location: 'Tampa, FL',
+    rating: 5,
+    date: '2 weeks ago',
+    text: 'Apex Air came out the same day my AC went down in July. Diagnosed the issue in 20 minutes and had it running before dinner. Incredibly professional — will use them for everything going forward.',
+    avatar: 'MT',
+  },
+  {
+    name: 'Sandra R.',
+    location: 'Clearwater, FL',
+    rating: 5,
+    date: '1 month ago',
+    text: "I've had bad experiences with HVAC companies in the past but these guys are different. Transparent pricing, no upsells, and the tech actually explained what was wrong. Highly recommend.",
+    avatar: 'SR',
+  },
+  {
+    name: 'James W.',
+    location: 'St. Petersburg, FL',
+    rating: 5,
+    date: '1 month ago',
+    text: 'Had a new Carrier system installed. From the quote to the final walkthrough the whole team was excellent. Great price and the install looks super clean. 5 stars easily.',
+    avatar: 'JW',
+  },
+  {
+    name: 'Lisa M.',
+    location: 'Brandon, FL',
+    rating: 5,
+    date: '6 weeks ago',
+    text: 'Called at 11pm during a heat wave and someone actually answered. Technician arrived within the hour. I cannot express how grateful I am. This is what customer service should look like.',
+    avatar: 'LM',
+  },
+  {
+    name: 'Carlos D.',
+    location: 'Wesley Chapel, FL',
+    rating: 5,
+    date: '2 months ago',
+    text: 'Got three quotes for my new HVAC system — Apex Air was the most competitive and the most thorough in their assessment. Zero issues with the install. Highly recommend.',
+    avatar: 'CD',
+  },
+  {
+    name: 'Patricia H.',
+    location: 'Lutz, FL',
+    rating: 5,
+    date: '2 months ago',
+    text: 'The technician was on time, polite, and left the house cleaner than he found it. The new mini-split system is incredibly quiet. Absolutely worth every penny.',
+    avatar: 'PH',
+  },
+];
+---
+
+<section id="reviews">
+  <div class="container">
+    <div class="rv-head" data-reveal>
+      <div>
+        <p class="section-tag">Customer Reviews</p>
+        <h2 class="section-title">4,900+ Five-Star<br/>Reviews & Counting.</h2>
+      </div>
+      <div class="rv-score">
+        <div class="rv-stars">★★★★★</div>
+        <div class="rv-avg">4.9</div>
+        <div class="rv-platform">
+          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+          Google Reviews
+        </div>
+      </div>
+    </div>
+
+    <div class="rv-grid" data-stagger>
+      {reviews.map(r => (
+        <div class="rv-card">
+          <div class="rv-top">
+            <div class="rv-avatar">{r.avatar}</div>
+            <div>
+              <div class="rv-name">{r.name}</div>
+              <div class="rv-loc">{r.location}</div>
+            </div>
+            <div class="rv-google-icon" style="margin-left:auto">
+              <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+            </div>
+          </div>
+          <div class="rv-stars-row">
+            {'★'.repeat(r.rating)}<span class="rv-date">{r.date}</span>
+          </div>
+          <p class="rv-text">{r.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  #reviews { background: var(--bg-alt); border-top: 1px solid var(--border); }
+
+  .rv-head {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    gap: 32px; margin-bottom: 48px; flex-wrap: wrap;
+  }
+  .rv-score { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+  .rv-stars { color: #f59e0b; font-size: 1.5rem; letter-spacing: 2px; }
+  .rv-avg { font-family: var(--font-head); font-size: 3rem; font-weight: 900; color: var(--text); line-height: 1; }
+  .rv-platform { display: flex; align-items: center; gap: 6px; font-size: .78rem; color: var(--muted); font-weight: 500; }
+
+  .rv-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+
+  .rv-card {
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: 24px;
+    display: flex; flex-direction: column; gap: 14px;
+    transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .rv-card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(0,0,0,.08); }
+
+  .rv-top { display: flex; align-items: center; gap: 12px; }
+  .rv-avatar {
+    width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
+    background: var(--navy); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-head); font-size: .82rem; font-weight: 700;
+  }
+  .rv-name { font-size: .9rem; font-weight: 700; color: var(--text); }
+  .rv-loc  { font-size: .76rem; color: var(--muted); }
+
+  .rv-stars-row { color: #f59e0b; font-size: .95rem; display: flex; align-items: center; gap: 10px; }
+  .rv-date { font-size: .73rem; color: var(--light); font-family: var(--font-body); }
+
+  .rv-text { font-size: .86rem; color: var(--muted); line-height: 1.7; flex: 1; }
+
+  @media (max-width: 960px) { .rv-grid { grid-template-columns: repeat(2,1fr); } }
+  @media (max-width: 560px) { .rv-grid { grid-template-columns: 1fr; } .rv-score { align-items: flex-start; } .rv-head { flex-direction: column; } }
+</style>

@@ -1,0 +1,287 @@
+---
+interface Props { title?: string; }
+const { title = "Apex Air — Tampa Bay's Trusted HVAC Experts" } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <canvas id="snowCanvas"></canvas>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <slot />
+</body>
+</html>
+
+<style is:global>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:        #1b3d7b;
+    --navy-dark:   #0f2555;
+    --navy-light:  #2453a3;
+    --orange:      #e8521a;
+    --orange-h:    #f26c38;
+    --bg:          #ffffff;
+    --bg-alt:      #f3f6fb;
+    --bg-dark:     #0d1c3a;
+    --text:        #1a1e2c;
+    --muted:       #64748b;
+    --light:       #94a3b8;
+    --border:      #e2e8f0;
+    --white:       #ffffff;
+    --radius:      10px;
+    --radius-lg:   16px;
+    --ease:        cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-out:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --font-head:   'Outfit', sans-serif;
+    --font-body:   'Inter', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; cursor: none; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── Cursor ── */
+  .cursor-dot, .cursor-ring {
+    position: fixed; top: 0; left: 0; border-radius: 50%;
+    pointer-events: none; z-index: 9999;
+    transform: translate(-50%,-50%);
+  }
+  .cursor-dot  { width:7px; height:7px; background:var(--orange); transition:width .15s,height .15s,background .2s; }
+  .cursor-ring { width:34px; height:34px; border:2px solid rgba(232,82,26,.4); transition:width .35s var(--ease),height .35s var(--ease),border-color .3s; }
+  body.ch .cursor-dot  { width:10px; height:10px; background:var(--navy); }
+  body.ch .cursor-ring { width:48px; height:48px; border-color:rgba(27,61,123,.45); }
+
+  /* ── Container ── */
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+  section { padding: 96px 0; }
+
+  /* ── Typography ── */
+  h1,h2,h3,h4,h5 { font-family: var(--font-head); }
+
+  .section-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: .72rem; font-weight: 600; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--orange);
+    margin-bottom: 14px;
+  }
+  .section-tag::before { content:''; display:block; width:22px; height:2px; background:var(--orange); border-radius:2px; }
+
+  .section-title {
+    font-size: clamp(1.9rem, 3.2vw, 2.9rem);
+    font-weight: 800; line-height: 1.15; letter-spacing: -.02em;
+    color: var(--text); margin-bottom: 16px;
+  }
+  .section-sub { font-size: .97rem; color: var(--muted); line-height: 1.75; max-width: 540px; }
+
+  /* ── Buttons ── */
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-head); font-size: .9rem; font-weight: 700;
+    padding: 14px 28px; border-radius: var(--radius); cursor: none;
+    text-decoration: none; transition: all .3s var(--ease-out);
+    white-space: nowrap; position: relative; overflow: hidden; border: none;
+    letter-spacing: .01em;
+  }
+  .btn::after {
+    content:''; position:absolute; inset:0;
+    background: rgba(255,255,255,.12);
+    transform: scaleX(0); transform-origin:left;
+    transition: transform .35s var(--ease-out);
+  }
+  .btn:hover::after { transform: scaleX(1); }
+  .btn:hover { transform: translateY(-2px); }
+
+  .btn-navy  { background:var(--navy);  color:#fff; }
+  .btn-navy:hover  { background:var(--navy-light); box-shadow:0 8px 28px rgba(27,61,123,.3); }
+  .btn-orange{ background:var(--orange); color:#fff; }
+  .btn-orange:hover{ background:var(--orange-h); box-shadow:0 8px 28px rgba(232,82,26,.35); }
+  .btn-outline{ background:transparent; color:var(--navy); border:2px solid var(--navy); }
+  .btn-outline:hover{ background:var(--navy); color:#fff; }
+  .btn-outline-white{ background:transparent; color:#fff; border:2px solid rgba(255,255,255,.5); }
+  .btn-outline-white:hover{ background:rgba(255,255,255,.12); border-color:#fff; }
+
+  /* ── Animations ── */
+  /* Fade up */
+  [data-reveal] {
+    opacity:0; transform:translateY(32px);
+    transition: opacity .75s var(--ease), transform .75s var(--ease);
+  }
+  [data-reveal].visible { opacity:1; transform:translateY(0); }
+
+  /* Fade left / right */
+  [data-reveal-left]  { opacity:0; transform:translateX(-40px); transition:opacity .8s var(--ease),transform .8s var(--ease); }
+  [data-reveal-right] { opacity:0; transform:translateX( 40px); transition:opacity .8s var(--ease),transform .8s var(--ease); }
+  [data-reveal-left].visible,[data-reveal-right].visible { opacity:1; transform:translate(0); }
+
+  /* Stagger children */
+  [data-stagger] > * { opacity:0; transform:translateY(28px); transition:opacity .65s var(--ease),transform .65s var(--ease); }
+  [data-stagger].visible > * { opacity:1; transform:translateY(0); }
+
+  /* Image clip reveal */
+  [data-img-reveal] { clip-path:inset(0 0 100% 0); transition:clip-path 1s var(--ease); }
+  [data-img-reveal].visible { clip-path:inset(0 0 0% 0); }
+
+  /* Word reveal */
+  .word-wrap { display:block; overflow:hidden; }
+  .word-wrap span { display:block; transform:translateY(110%); transition:transform .85s var(--ease); }
+  .word-wrap.visible span { transform:translateY(0); }
+
+  /* Snow canvas */
+  #snowCanvas {
+    position: fixed; inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none; z-index: 1;
+  }
+
+  @media (max-width:768px) {
+    .container { padding:0 20px; }
+    section { padding:64px 0; }
+    html { cursor:auto; }
+    .cursor-dot,.cursor-ring { display:none; }
+  }
+</style>
+
+<script>
+  // Cursor
+  const dot=document.getElementById('cursorDot'),ring=document.getElementById('cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+  (function loop(){
+    rx+=(mx-rx)*.38; ry+=(my-ry)*.38;
+    if(dot){dot.style.left=mx+'px';dot.style.top=my+'px';}
+    if(ring){ring.style.left=rx+'px';ring.style.top=ry+'px';}
+    requestAnimationFrame(loop);
+  })();
+  document.querySelectorAll('a,button,[data-cursor]').forEach(el=>{
+    el.addEventListener('mouseenter',()=>document.body.classList.add('ch'));
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('ch'));
+  });
+
+  // Stagger delays
+  document.querySelectorAll('[data-stagger]').forEach(w=>{
+    Array.from(w.children).forEach((c,i)=>{(c as HTMLElement).style.transitionDelay=i*.09+'s';});
+  });
+
+  // Intersection observer
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});
+  },{threshold:.1});
+  document.querySelectorAll('[data-reveal],[data-reveal-left],[data-reveal-right],[data-stagger],[data-img-reveal]').forEach(el=>io.observe(el));
+
+  // Word wraps
+  const wio=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('visible');});
+  },{threshold:.2});
+  document.querySelectorAll('.word-wrap').forEach(el=>wio.observe(el));
+
+  // ── Snow ──
+  (function(){
+    const canvas = document.getElementById('snowCanvas') as HTMLCanvasElement;
+    const ctx = canvas.getContext('2d')!;
+    let W = window.innerWidth, H = window.innerHeight;
+    canvas.width = W; canvas.height = H;
+
+    interface Flake {
+      x: number; y: number; r: number;
+      speed: number; drift: number;
+      opacity: number; sway: number; swaySpeed: number;
+      wobble: number;
+    }
+
+    const COUNT = 130;
+    const flakes: Flake[] = [];
+    for (let i = 0; i < COUNT; i++) {
+      flakes.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: Math.random() * 2.8 + 0.6,
+        speed: Math.random() * 0.7 + 0.25,
+        drift: Math.random() * 0.4 - 0.2,
+        opacity: Math.random() * 0.45 + 0.12,
+        sway: Math.random() * Math.PI * 2,
+        swaySpeed: Math.random() * 0.008 + 0.003,
+        wobble: Math.random() * 0.6 + 0.3,
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      flakes.forEach(f => {
+        f.sway += f.swaySpeed;
+        f.x += Math.sin(f.sway) * f.wobble + f.drift;
+        f.y += f.speed;
+        if (f.y > H + 8)  { f.y = -8;  f.x = Math.random() * W; }
+        if (f.x > W + 8)  f.x = -8;
+        if (f.x < -8)     f.x = W + 8;
+
+        // Draw snowflake as a simple 6-point star
+        ctx.save();
+        ctx.translate(f.x, f.y);
+        ctx.globalAlpha = f.opacity;
+        if (f.r > 1.8) {
+          // Larger flakes: draw a small 6-arm star
+          ctx.strokeStyle = 'rgba(200,230,255,1)';
+          ctx.lineWidth = f.r * 0.45;
+          ctx.lineCap = 'round';
+          for (let a = 0; a < 3; a++) {
+            ctx.beginPath();
+            const angle = (a * Math.PI) / 3;
+            ctx.moveTo(Math.cos(angle) * f.r * 1.6, Math.sin(angle) * f.r * 1.6);
+            ctx.lineTo(-Math.cos(angle) * f.r * 1.6, -Math.sin(angle) * f.r * 1.6);
+            ctx.stroke();
+          }
+          // center dot
+          ctx.beginPath();
+          ctx.arc(0, 0, f.r * 0.3, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(200,230,255,1)';
+          ctx.fill();
+        } else {
+          // Smaller flakes: just circles
+          ctx.beginPath();
+          ctx.arc(0, 0, f.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(210,235,255,1)';
+          ctx.fill();
+        }
+        ctx.restore();
+      });
+      requestAnimationFrame(draw);
+    }
+    draw();
+
+    window.addEventListener('resize', () => {
+      W = window.innerWidth; H = window.innerHeight;
+      canvas.width = W; canvas.height = H;
+    });
+  })();
+
+  // Counters
+  function countUp(el:Element){
+    const t=parseInt((el as HTMLElement).dataset.count??'0',10);
+    const t0=performance.now();
+    (function tick(n){
+      const p=Math.min((n-t0)/2000,1),e=1-Math.pow(1-p,4);
+      el.textContent=Math.round(e*t).toLocaleString();
+      if(p<1)requestAnimationFrame(tick);
+    })(t0);
+  }
+  const cio=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){countUp(e.target);cio.unobserve(e.target);}});
+  },{threshold:.5});
+  document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+</script>

@@ -1,0 +1,82 @@
+---
+const testimonials = [
+  {
+    quote:"Apex Air completely transformed our home's comfort. From consultation to final install, every detail was handled with precision and care. Absolutely worth every penny.",
+    name:"Michael R.", city:"Tampa, FL",
+  },
+  {
+    quote:"I've used other HVAC companies for years. Apex is on another level — professional, on time, and the Carrier system they installed runs flawlessly. Exceptional.",
+    name:"Sarah K.", city:"Clearwater, FL",
+  },
+  {
+    quote:"Called them at 10 PM for a complete system failure. Had a certified tech at my door by 11 PM, problem solved before midnight. Cannot recommend them enough.",
+    name:"James T.", city:"St. Petersburg, FL",
+  },
+];
+---
+
+<section id="testimonials">
+  <div class="container">
+    <div class="t-head" data-reveal>
+      <p class="label">Client Stories</p>
+      <h2 class="section-title">Words that matter.</h2>
+    </div>
+    <div class="t-grid" data-stagger>
+      {testimonials.map(t => (
+        <div class="t-card">
+          <div class="t-stars">★★★★★</div>
+          <blockquote class="t-quote">"{t.quote}"</blockquote>
+          <div class="t-author">
+            <div class="t-avatar">{t.name.charAt(0)}</div>
+            <div>
+              <div class="t-name">{t.name}</div>
+              <div class="t-city">{t.city}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  #testimonials {
+    background:var(--bg-alt);
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+  }
+  .t-head { margin-bottom:48px; }
+  .t-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+
+  .t-card {
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    padding:32px 28px; display:flex; flex-direction:column;
+    box-shadow:0 2px 16px rgba(8,14,31,.05);
+    transition:border-color .35s, box-shadow .35s, transform .35s var(--ease);
+  }
+  .t-card:hover {
+    border-color:var(--blue-border);
+    box-shadow:0 12px 48px rgba(29,107,250,.1);
+    transform:translateY(-5px);
+  }
+
+  .t-stars { color:var(--gold); font-size:.9rem; letter-spacing:3px; margin-bottom:16px; }
+  .t-quote {
+    font-size:.88rem; color:var(--text); line-height:1.82;
+    font-style:italic; flex:1; margin-bottom:24px;
+  }
+  .t-author { display:flex; align-items:center; gap:13px; padding-top:18px; border-top:1px solid var(--border); }
+  .t-avatar {
+    width:38px; height:38px; border-radius:50%;
+    background:var(--blue-dim); border:1px solid var(--blue-border);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-head); font-weight:700; font-size:.86rem;
+    color:var(--blue); flex-shrink:0;
+  }
+  .t-name { font-weight:600; font-size:.86rem; color:var(--heading); margin-bottom:2px; }
+  .t-city { font-size:.76rem; color:var(--muted); }
+
+  @media (max-width:900px) { .t-grid { grid-template-columns:1fr; } }
+</style>

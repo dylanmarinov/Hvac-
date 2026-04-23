@@ -1,0 +1,48 @@
+<div class="topbar">
+  <div class="container">
+    <div class="tb-inner">
+      <div class="tb-left">
+        <span class="tb-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.02 2.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14v2.92z"/></svg>
+          <a href="tel:+17275550100">(727) 555-0100</a>
+        </span>
+        <span class="tb-divider">|</span>
+        <span class="tb-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
+          <a href="mailto:hello@apexair.com">hello@apexair.com</a>
+        </span>
+      </div>
+      <div class="tb-right">
+        <span class="tb-badge">
+          <span class="tb-dot"></span>
+          24/7 Emergency Service Available
+        </span>
+        <span class="tb-divider">|</span>
+        <span class="tb-item">License #CAC1819000</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .topbar {
+    background: var(--navy-dark);
+    padding: 9px 0;
+    font-size: .73rem;
+    color: rgba(255,255,255,.65);
+  }
+  .tb-inner {
+    display: flex; align-items: center;
+    justify-content: space-between; gap: 20px;
+    flex-wrap: wrap;
+  }
+  .tb-left, .tb-right { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .tb-item { display: flex; align-items: center; gap: 6px; }
+  .tb-item a { color: rgba(255,255,255,.7); text-decoration: none; transition: color .2s; font-weight: 500; }
+  .tb-item a:hover { color: #fff; }
+  .tb-divider { opacity: .3; font-size: .65rem; }
+  .tb-badge { display: flex; align-items: center; gap: 6px; color: #6ee7b7; font-weight: 600; letter-spacing: .03em; }
+  .tb-dot { width:7px; height:7px; border-radius:50%; background:#6ee7b7; animation: tb-pulse 2s infinite; flex-shrink:0; }
+  @keyframes tb-pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.65)} }
+  @media (max-width:640px) { .tb-right { display:none; } }
+</style>

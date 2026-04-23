@@ -1,0 +1,125 @@
+---
+const services = [
+  {
+    num:'01', title:'AC Installation',
+    desc:'New system installations sized perfectly for your Florida home. We carry Carrier, Trane, and Lennox.',
+    img:'https://images.pexels.com/photos/6471912/pexels-photo-6471912.jpeg?auto=compress&cs=tinysrgb&w=600',
+    link:'#contact',
+  },
+  {
+    num:'02', title:'AC Repair',
+    desc:'Fast same-day repairs for any AC brand. We diagnose the problem right the first time — guaranteed.',
+    img:'https://images.pexels.com/photos/5463580/pexels-photo-5463580.jpeg?auto=compress&cs=tinysrgb&w=600',
+    link:'#contact',
+  },
+  {
+    num:'03', title:'Heating Systems',
+    desc:'Heat pumps, mini-splits, and furnaces installed and serviced by NATE-certified technicians.',
+    img:'https://images.pexels.com/photos/32588555/pexels-photo-32588555.jpeg?auto=compress&cs=tinysrgb&w=600',
+    link:'#contact',
+  },
+  {
+    num:'04', title:'Commercial HVAC',
+    desc:'Scalable HVAC solutions for offices, retail stores, restaurants, and warehouses across Tampa Bay.',
+    img:'https://images.pexels.com/photos/3964736/pexels-photo-3964736.jpeg?auto=compress&cs=tinysrgb&w=600',
+    link:'#contact',
+  },
+  {
+    num:'05', title:'Indoor Air Quality',
+    desc:'HEPA filtration, UV air purifiers, and whole-home dehumidifiers to keep your family breathing clean.',
+    img:'https://images.pexels.com/photos/11538226/pexels-photo-11538226.jpeg?auto=compress&cs=tinysrgb&w=600',
+    link:'#contact',
+  },
+  {
+    num:'06', title:'Emergency Service',
+    desc:'System down at midnight? We answer 24/7 with licensed technicians ready to roll in 60 minutes.',
+    img:'https://images.pexels.com/photos/6471914/pexels-photo-6471914.jpeg?auto=compress&cs=tinysrgb&w=600',
+    link:'#contact',
+  },
+];
+---
+
+<section id="services">
+  <div class="container">
+    <div class="s-head" data-reveal>
+      <div>
+        <p class="section-tag">Our Services</p>
+        <h2 class="section-title">Everything your home or<br />business needs.</h2>
+      </div>
+      <p class="section-sub">NATE-certified technicians. Upfront pricing. Work guaranteed.</p>
+    </div>
+
+    <div class="s-grid" data-stagger>
+      {services.map(s => (
+        <a href={s.link} class="s-card">
+          <div class="s-img-wrap">
+            <img src={s.img} alt={s.title} class="s-img"
+              onerror="this.src='https://images.pexels.com/photos/6471911/pexels-photo-6471911.jpeg?auto=compress&cs=tinysrgb&w=600'" />
+            <div class="s-num">{s.num}</div>
+          </div>
+          <div class="s-body">
+            <h3 class="s-title">{s.title}</h3>
+            <p class="s-desc">{s.desc}</p>
+            <span class="s-link">Get a Quote <span class="s-arrow">→</span></span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  #services {
+    background: var(--bg-alt); border-top: 1px solid var(--border);
+    position: relative;
+  }
+  #services::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--orange) 0%, #fda07a 50%, var(--navy) 100%);
+  }
+
+  .s-head {
+    display:flex; align-items:flex-end; justify-content:space-between;
+    gap:32px; margin-bottom:48px; flex-wrap:wrap;
+  }
+  .s-head .section-sub { text-align:right; flex-shrink:0; max-width:280px; }
+
+  .s-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+
+  .s-card {
+    background:var(--bg); border:1px solid var(--border); border-radius:var(--radius-lg);
+    overflow:hidden; text-decoration:none; color:inherit;
+    display:flex; flex-direction:column;
+    transition:transform .4s var(--ease), box-shadow .4s var(--ease), border-color .3s;
+  }
+  .s-card:hover { transform:translateY(-6px); box-shadow:0 16px 48px rgba(0,0,0,.1); border-color:var(--navy); }
+  .s-card:hover .s-img { transform:scale(1.06); }
+  .s-card:hover .s-arrow { transform:translateX(4px); }
+  .s-card:hover .s-link { color:var(--orange); }
+
+  .s-img-wrap { position:relative; overflow:hidden; aspect-ratio:16/10; }
+  .s-img { width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease);display:block; }
+  .s-num {
+    position:absolute; top:14px; left:14px;
+    background:var(--navy); color:#fff; border-radius:6px;
+    padding:4px 10px; font-family:var(--font-head); font-size:.68rem; font-weight:700; letter-spacing:.1em;
+  }
+
+  .s-body { padding:22px 24px; flex:1; display:flex; flex-direction:column; }
+  .s-title { font-size:1.1rem; font-weight:800; color:var(--text); margin-bottom:8px; }
+  .s-desc { font-size:.86rem; color:var(--muted); line-height:1.7; flex:1; margin-bottom:16px; }
+  .s-link {
+    font-family:var(--font-head); font-size:.82rem; font-weight:700;
+    color:var(--navy); display:flex; align-items:center; gap:6px; transition:color .2s;
+  }
+  .s-arrow { display:inline-block; transition:transform .3s var(--ease); }
+
+  @media (max-width:960px) {
+    .s-grid { grid-template-columns:repeat(2,1fr); }
+    .s-head .section-sub { text-align:left; }
+    .s-head { flex-direction:column; align-items:flex-start; }
+  }
+  @media (max-width:560px) { .s-grid { grid-template-columns:1fr; } }
+</style>
